@@ -419,7 +419,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
     stager.extendStep('treatment', {
         backbutton: false,
         donebutton: {
-            delayOnPlaying: '0' // it is possible to continue only after 30 seconds
+            delayOnPlaying: '0' // continue only after xx seconds
         },
         frame: 'informationTreatment.html',
         widget: {
