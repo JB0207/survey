@@ -9,7 +9,7 @@
  * ---
  */
 
-module.exports = function(treatmentName, settings, stager, setup, gameRoom, choice) {
+module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
      stager
         .next('consent')
