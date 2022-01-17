@@ -1,3 +1,4 @@
+
 /**
  * # Player type implementation of the game stages
  * Copyright(c) 2021 Stefano Balietti <ste@nodegame.org>
@@ -77,6 +78,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         // this.debugInfo = node.widgets.append('DebugInfo', header)
     });
 
+
     stager.extendStep('consent', {
         donebutton: false,
         widget: 'Consent',
@@ -105,13 +107,25 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
-    stager.extendStep('survey-demo1', {
-        // Make a widget step.
+
+    stager.extendStep('questionInformation-1', {
+        name: 'Question Information 1',
+        widget: {
+            name: 'ContentBox',
+            options: {
+                mainText: 'On the next page, we ask you a few questions about your demographic characteristics. Please click the "Next" button.',
+                className: 'centered'
+            }
+        }
+    });
+
+
+    stager.extendStep('demographics', {
         widget: {
             name: 'ChoiceManager',
             options: {
-                id: 'demo1',
-                mainText: 'Your demographics.',
+                id: 'demographics',
+                mainText: '',
                 simplify: true,
                 forms: [
                     {
@@ -119,91 +133,17 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                         mainText: 'What is your gender?',
                         choices: ['Male', 'Female', 'Other'],
                         shuffleChoices: false,
-                        onclick: function (value, removed) {
-                            var w;
-                            // Display Other.
-                            w = node.widgets.lastAppended.formsById.othergender;
-                            if ((value === 2) && !removed) w.show();
-                            else w.hide();
-                            // Necessary when the page changed size after
-                            // loading it
-                            W.adjustFrameHeight();
-                        },
-                        preprocess: capitalizeInput
-                    },
-                    {
-                        name: 'CustomInput',
-                        id: 'othergender',
-                        mainText: 'Please name your gender.',
-                        width: '95%',
-                        hidden: true
                     },
                     {
                         name: 'CustomInput',
                         id: 'age',
                         mainText: 'What is your age?',
+                        hint: '(in years)',
                         type: 'int',
                         min: 18,
+                        max: 100
                         // requiredChoice: false
                     },
-                    {
-                        id: 'race',
-                        selectMultiple: true,
-                        mainText: 'Do you identify with any ' +
-                            'of the following races/ethnic groups?',
-                        choices: ['White', 'African American',
-                            'Latino', 'Asian',
-                            'American Indian',
-                            'Alaska Native',
-                            'Native Hawaiian', 'Pacific Islander']
-                    },
-                    {
-                        name: 'CustomInput',
-                        id: 'othereyes',
-                        mainText: 'Please say the color of your eyes.',
-                        width: '95%',
-                        hint: '(If more than one color, order alphabetically ' +
-                            'and unite with a dash)',
-                        preprocess: capitalizeInput
-                    },
-                    {
-                        name: 'CustomInput',
-                        id: 'language',
-                        mainText: 'What is your first language?',
-                        preprocess: capitalizeInput,
-                        width: '95%',
-                    },
-                    {
-                        name: 'CustomInput',
-                        id: 'otherlanguage',
-                        mainText: 'Do you speak other languages? If Yes, ' +
-                            'list them here, otherwise leave empty.',
-                        type: 'list',
-                        hint: '(if <em>English</em> is not your first ' +
-                            'language, list it first; if you speak more ' +
-                            'than one language, separate them with comma)',
-                        width: '95%',
-                        requiredChoice: false
-                    },
-                ],
-                formsOptions: {
-                    requiredChoice: true,
-                    shuffleChoices: true
-                },
-                className: 'centered'
-            }
-        }
-    });
-
-
-    stager.extendStep('survey-demo2', {
-        widget: {
-            name: 'ChoiceManager',
-            options: {
-                id: 'demo2',
-                mainText: 'Your demographics.',
-                simplify: true,
-                forms: [
                     {
                         id: 'education',
                         mainText: 'What is your highest education level that you have achieved?',
@@ -216,73 +156,13 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     {
                         id: 'employment',
                         mainText: 'What is your employment status?',
+                        hint: '(If you have more than one of the employment statuses listed, please indicate the one for in which you spend the most time)',
                         choices: [
-                            'Unemployed', 'Self-employed', 'Employed',
+                            'Unemployed', 'Student', 'Employed less than part time', 'Employed-part time', 'Employed', 'Self-employed',
                             'Retired'
-                        ]
-                    },
-                    {
-                        id: 'hardship',
-                        mainText: 'Hardship is a condition that causes ' +
-                            'difficulty or suffering. In the course ' +
-                            'of your life, would you say ' +
-                            'that you have experienced hardship?',
-                        hint: '(Examples are being ' +
-                            'without a job or enough money)',
-                        choices: ['Yes', 'No', 'Prefer not to answer'],
-                        // requiredChoice: false
-                    },
-                    {
-                        id: 'socialmedia',
-                        mainText: 'Do you spend time on social media?',
-                        choices: [
-                            'I am a very active user',
-                            'I am a somewhat active user',
-                            'I rarely use them',
-                            'I never use them'
-                        ]
-                    }
-                ],
-                formsOptions: {
-                    requiredChoice: true,
-                    shuffleChoices: true
-                },
-                className: 'centered'
-            }
-        }
-    });
-
-    stager.extendStep('survey-finance', {
-        widget: {
-            name: 'ChoiceManager',
-            options: {
-                id: 'demo3',
-                mainText: 'Job, and finances.',
-                simplify: true,
-                forms: [
-                    {
-                        id: 'employment',
-                        mainText: 'What is your employment status?',
-                        choices: [
-                            'Unemployed', 'Self-employed', 'Employed',
-                            'Retired'
-                        ]
-                    },
-                    {
-                        id: 'ownhouse',
-                        mainText: 'Do you own a house or an apartment?',
-                        choices: [
-                            'Yes', 'No',
                         ],
-                        shuffleChoices: false
-                    },
-                    {
-                        id: 'owncar',
-                        mainText: 'Do you own a car?',
-                        choices: [
-                            'Yes', 'No',
-                        ],
-                        shuffleChoices: false
+                        shuffleChoices: false,
+                        choicesSetSize: 4,
                     },
                     {
                         id: 'income',
@@ -297,44 +177,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                         shuffleChoices: false,
                         choicesSetSize: 8
                     },
-                    {
-                        id: 'studentdebt',
-                        mainText: 'Do you have a student debt?',
-                        choices: [
-                            'Yes, and it is large',
-                            'Yes, but it is manageable',
-                            'No, I have paid it off',
-                            'No, I never had it'
-                        ],
-                        shuffleChoices: false
-                    },
-                    {
-                        name: 'ChoiceTableGroup',
-                        id: 'incomeclass',
-                        mainText: 'To which social class do you feel ' +
-                            'you belong?',
-                        hint: '(If unsure, make your best guess)',
-                        choices: [
-                            'Bottom', 'Lower', 'Lower-Middle',
-                            'Middle',
-                            'Upper-Middle', 'Upper', 'Elite'
-                        ],
-                        items: [
-                            {
-                                id: 'now',
-                                left: 'Now'
-                            },
-                            {
-                                id: 'child',
-                                left: 'As a child'
-                            },
-                            {
-                                id: 'future',
-                                left: 'In the future'
-                            }
-                        ],
-                        shuffleChoices: false
-                    }
+
                 ],
                 formsOptions: {
                     requiredChoice: true,
@@ -345,248 +188,48 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
-    stager.extendStep('survey-inequality', {
+
+    stager.extendStep('questionInformation-2', {
+        name: 'Question Information 2',
         widget: {
-            name: 'ChoiceManager',
-            id: 'pol',
+            name: 'ContentBox',
             options: {
-                mainText: 'Your ' +
-                    'perception of socio-economic inequality in the US.',
-                simplify: true,
-                    forms: [
-                    {
-                        id: 'ineqprob',
-                        mainText: 'Do you think inequality is a serious ' +
-                            'problem in America?',
-                        choices: [
-                            'Not a problem<br/>at all',
-                            'A small<br/>problem',
-                            'A problem',
-                            'A serious problem',
-                            'A very serious problem'
-                        ],
-                        choicesSetSize: 7
-                    },
-                    {
-                        name: 'ChoiceTableGroup',
-                        id: 'ineq_source_internal',
-                        choices: J.seq(1, 7),
-                        mainText: 'Express your agreement ' +
-                            'on a scale from 1 to 7, where 1 means ' +
-                            'complete disagreement and 7 complete agreement, ' +
-                            'with the following statements.<br/><br/>' +
-                            'Socio-economic inequality in the US is mainly ' +
-                            'caused by:<br/><br/>' +
-                            'Personal Factors:',
-                        items: [
-                            {
-                                id: 'talent',
-                                left: 'Some people are more talented'
-                            },
-                            {
-                                id: 'workhard',
-                                left: 'Some people work harder'
-                            },
-                            {
-                                id: 'easierjobs',
-                                left: 'Some people prefer easier, ' +
-                                    'low-paying jobs'
-                            }
-                        ]
-                    },
-                    {
-                        name: 'ChoiceTableGroup',
-                        id: 'ineq_source_economic',
-                        choices: J.seq(1, 7),
-                        mainText: 'Economic Factors:',
-                        items: [
-                            {
-                                id: 'globalization',
-                                left: 'Globalization has squeezed the salary' +
-                                    '<br/>of lower-income families'
-                            },
-                            {
-                                id: 'techchange',
-                                left: 'Technological change has raised<br/> ' +
-                                    'the salary of highly-educated workers'
-                            },
-                            {
-                                id: 'finance',
-                                left: 'Salaries of people working in<br/>' +
-                                    'financial sector are driving inequality'
-                            }
-                        ]
-                    },
-                    {
-                        name: 'ChoiceTableGroup',
-                        id: 'ineq_source_political',
-                        choices: J.seq(1, 7),
-                        mainText: 'Political Factors:',
-                        items: [
-                            {
-                                id: 'lobbies',
-                                left: 'Interests lobbies in Washington'
-                            },
-                            {
-                                id: 'minorities',
-                                left: 'Discrimination against some minorities'
-                            },
-                            {
-                                id: 'restricted_edu',
-                                left: 'Restricted access to high-quality ' +
-                                    'education'
-                            },
-                            {
-                                id: 'policies',
-                                left: 'Social policies in favor of workers ' +
-                                    'and unions<br/>have been removed by ' +
-                                    'politicians'
-                            }
-                        ]
-                    },
-                    {
-                        name: 'ChoiceTableGroup',
-                        id: 'ineq_source_luck',
-                        choices: J.seq(1, 7),
-                        mainText: 'Luck:',
-                        items: [
-                            {
-                                id: 'family',
-                                left: 'Family one is born into'
-                            },
-                            {
-                                id: 'luck',
-                                left: 'Other external events'
-                            }
-                        ]
-                    },
-                ],
-                formsOptions: {
-                    requiredChoice: true,
-                    // shuffleChoices: true
-                },
+                mainText: 'On the next pages, we ask you several questions about environmental protection and global warming.',
                 className: 'centered'
             }
         }
     });
 
-    stager.extendStep('survey-politics', {
+
+    stager.extendStep('dilemmaConcernMatrix', {
+        name: 'Dilemma Concern',
+        widget: {
+            name: 'dC',
+            title: false,
+            panel: false
+        }   
+    });
+
+    stager.extendStep('trust', {
         widget: {
             name: 'ChoiceManager',
-            id: 'pol2',
             options: {
-                mainText: 'Political knowledge questions.',
+                id: 'trust',
+                mainText: 'How strongly do you agree or disagree with the following statement?',
                 simplify: true,
                 forms: [
                     {
-                        id: 'speaker',
-                        mainText: 'Who is the current speaker of' +
-                            ' the US House of Representatives?',
+                        id: 'trust-1',
+                        mainText: 'What do you believe: Are other people willing to pay something for environmental protection?',
                         choices: [
-                            'Nancy Pelosi',
-                            'Mitch McConnell',
-                            'Chuck Schumer',
-                            'Paul Ryan',
-                            'I don\'t know'
+                            '(1) Definitely not willing to pay', '(2)', '(3)', '(4)', '(5)', '(6)',
+                            '(7) Definitely willing to pay'
                         ],
-                        // correctChoice: 0
+                        shuffleChoices: false
                     },
-                    {
-                        id: 'houseTerm',
-                        mainText: 'How long is a complete term for' +
-                            ' a member of the US House of Representatives?',
-                        choices: [
-                            '2 years',
-                            '4 years',
-                            '6 years',
-                            '8 years',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 0
-                    },
-                    {
-                        id: 'senateTerm',
-                        mainText: 'How long is a complete term for' +
-                            ' a member of the US Senate?',
-                        choices: [
-                            '2 years',
-                            '4 years',
-                            '6 years',
-                            '8 years',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 2
-                    },
-                    {
-                        id: 'medicare',
-                        mainText: 'What is Medicare?',
-                        choices: [
-                            'A program run by state governments to provide' +
-                            ' health care to poor people',
-                            'A private health insurance' +
-                            ' plan sold to individuals in all 50 states',
-                            'A program run by the US federal government to pay' +
-                            ' for old people’s health care',
-                            'A private, non-profit organization' +
-                            ' that runs free health clinics',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 2
-                    },
-                    {
-                        id: 'veto',
-                        mainText: 'How much of a majority is required for' +
-                            ' the US Senate and US House to override' +
-                            ' a presidential veto?',
-                        choices: [
-                            'One-half',
-                            'Two-thirds',
-                            'Three-fourths',
-                            'Three-fifths',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 1
-                    },
-                    {
-                        id: 'minWage',
-                        mainText: 'What is the federal minimum wage today?',
-                        choices: [
-                            '$5.25',
-                            '$7.25',
-                            '$10.50',
-                            '$12.50',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 1
-                    },
-                    {
-                        id: 'infRate',
-                        mainText: 'Is the national inflation rate as reported' +
-                            ' by the government currently closest to…',
-                        choices: [
-                            '1%',
-                            '6%',
-                            '10%',
-                            '15%',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 1
-                    },
-                    {
-                        id: 'primeMinister',
-                        mainText: 'Who is the prime minister of Great Britain?',
-                        choices: [
-                            'Scott Morrison',
-                            'Justin Trudeau',
-                            'Angela Merkel',
-                            'Boris Johnson',
-                            'I don\'t know'
-                        ],
-                        // correctChoice: 3
-                    },
-
                 ],
                 formsOptions: {
+                    requiredChoice: true,
                     shuffleChoices: true
                 },
                 className: 'centered'
@@ -594,30 +237,295 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         }
     });
 
-    stager.extendStep('group_malleability', {
+
+    stager.extendStep('subjectiveNorm', {
         widget: {
-            name: 'GroupMalleability',
-            title: false,
-            panel: false
+            name: 'ChoiceManager',
+            options: {
+                id: 'subjectiveNorm',
+                mainText: 'What do you think:',
+                simplify: true,
+                forms: [
+                    {
+                        id: 'subjectiveNorm-1',
+                        mainText: 'Would your friends and relatives be in favor if you voluntarily contribute money to protect the environment or to mitigate global warming?',
+                        choices: [
+                            '(1) Would not be in favor', '(2)', '(3)', '(4) Would not care',
+                            '(5)', '(6)', '(7) Would be strongly in favor'
+                        ],
+                        shuffleChoices: false
+                    },
+                ],
+                formsOptions: {
+                    requiredChoice: true,
+                    shuffleChoices: true
+                },
+                className: 'centered'
+            }
         }
     });
 
 
-    stager.extendStep('sdo', {
-        name: 'Perception of Groups',
+    stager.extendStep('perceivedBehavioralControl', {
         widget: {
-            name: 'SDO',
-            title: false,
-            panel: false
+            name: 'ChoiceManager',
+            options: {
+                id: 'perceivedBehavioralControl',
+                mainText: 'What applies to you?',
+                simplify: true,
+                forms: [
+                    {
+                        id: 'perceivedBehavioralControl-1',
+                        mainText: 'Making a financial contribution to environmental protection or to mitigate global warming is or would be for me:',
+                        choices: [
+                            '(1) Very difficult', '(2)', '(3)', '(4)', '(5)', '(6)',
+                            '(7) Very easy'
+                        ],
+                        shuffleChoices: false
+                    },
+                    {
+                        id: 'perceivedBehavioralControl-2',
+                        mainText: 'Making a financial contribution to environmental protection or to mitigate global warming is or would be for me:',
+                        choices: [
+                            '(1) Not at all feasible', '(2)', '(3)', '(4)', '(5)', '(6)',
+                            '(7) Feasible without any problems'
+                        ],
+                        shuffleChoices: false
+                    },
+                ],
+                formsOptions: {
+                    requiredChoice: true,
+                    shuffleChoices: true
+                },
+                className: 'centered'
+            }
         }
     });
+
+
+    stager.extendStep('awarenessOfNeedForPaying', {
+        widget: {
+            name: 'ChoiceManager',
+            options: {
+                id: 'awarenessOfNeedForPaying',
+                mainText: 'How strongly do you agree or disagree with the following statements?',
+                simplify: true,
+                forms: [
+                    {
+                        id: 'awarenessOfNeedForPaying-1',
+                        mainText: 'Compared to other policy measures, protecting the environment and mitigating global warming are not a high priority.',
+                        choices: [
+                            '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
+                            '(5) Strongly agree'
+                        ],
+                        shuffleChoices: false
+                    },
+                    {
+                        id: 'awarenessOfNeedForPaying-2',
+                        mainText: 'The current level of environmental protection and the implemented measures against global warming are completely sufficient. From my point of view, there is not need to increase them',
+                        choices: [
+                            '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
+                            '(5) Strongly agree'
+                        ],
+                        shuffleChoices: false
+                    },
+                ],
+                formsOptions: {
+                    requiredChoice: true,
+                    shuffleChoices: true
+                },
+                className: 'centered'
+            }
+        }
+    });
+
+
+    stager.extendStep('awarenessOfResponsibilityForPaying', {
+        widget: {
+            name: 'ChoiceManager',
+            options: {
+                id: 'awarenessOfResponsibilityForPaying',
+                mainText: 'How strongly do you agree or disagree with the following statement?',
+                simplify: true,
+                forms: [
+                    {
+                        id: 'awarenessOfResponsibilityForPaying-1',
+                        mainText: 'I already pay enough for other things. I do not have to also pay for environmental protection and/or the mitigation of global warming',
+                        choices: [
+                            '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
+                            '(5) Strongly agree'
+                        ],
+                        shuffleChoices: false
+                    },
+                ],
+                formsOptions: {
+                    requiredChoice: true,
+                    shuffleChoices: true
+                },
+                className: 'centered'
+            }
+        }
+    });
+
+
+    stager.extendStep('environmentalConcernMatrix', {
+        name: 'Environmental Concern',
+        widget: {
+            name: 'eC',
+            title: false,
+            panel: false
+        }   
+    });
+
+
+    stager.extendStep('generalWarmGlowMatrix', {
+        name: 'General Warm Glow',
+        widget: {
+            name: 'gWG',
+            title: false,
+            panel: false
+        }   
+    });
+
+
+    stager.extendStep('subjectiveObligationToPay', {
+        widget: {
+            name: 'ChoiceManager',
+            options: {
+                id: 'subjectiveObligationToPay',
+                mainText: 'How strongly do you agree or disagree with the following statement?',
+                simplify: true,
+                forms: [
+                    {
+                        id: 'subjectiveObligationToPay-1',
+                        mainText: 'To what extent do you perceive paying something for environmental protection or global warming mitigation as a moral obligation?',
+                        choices: [
+                            '(1) No moral obligation at all', '(2)', '(3)', '(4)', '(5)', '(6)',
+                            '(7) A very strong moral obligation'
+                        ],
+                        shuffleChoices: false
+                    },
+                ],
+                formsOptions: {
+                    requiredChoice: true,
+                    shuffleChoices: true
+                },
+                className: 'centered'
+            }
+        }
+    });
+
+
+    stager.extendStep('treatment', {
+        backbutton: false,
+        donebutton: {
+            delayOnPlaying: '0' // it is possible to continue only after 30 seconds
+        },
+        frame: 'informationTreatment.html',
+        widget: {
+                name: 'ChoiceManager',
+                options: {
+                    id: 'treatment',
+                    simplify: true,
+                    forms: [
+                        {
+                            id: 'treatment-1',
+                            mainText: 'According to the graph, have most countries initiated effective measures to limit global warming to 1.5 degrees?',
+                            choices: [
+                                'Yes', 'No'
+                            ],
+                            shuffleChoices: false,
+                            correctChoice: 1
+                        },
+                        {
+                            id: 'treatment-2',
+                            mainText: 'According to the graph, the measures adopted by the EU so far are classified as what?',
+                            choices: [
+                                '1.5°C Paris Agreement compatible', 'Almost sufficient', "Insufficient", 'Highly insufficient', 'Critically insufficient'
+                            ],
+                            shuffleChoices: true,
+                            correctChoice: 2
+                        },
+                    ],
+                    formsOptions: {
+                            shuffleChoices: true
+                    },
+                    className: 'centered'
+                }
+            }
+     });
+
+
+         
+     stager.extendStep('inPrincipleWTP', {
+        backbutton: false,
+        widget: {
+                name: 'ChoiceManager',
+                options: {
+                    id: 'inPrincipleWTP',
+                    mainText: 'As the previous figure has shown, most countries (including the worlds largest CO2 emitters) in the world have taken insufficient measures to mitigate and stop global warming at the present time. However, this cannot be achieved by the actions of countries alone, an important contribution can be made by charitable organizations (such as WWF, NABU, BUND, Green Forest Fund, etc.).',
+                    simplify: true,
+                    forms: [
+                        {
+                            id: 'inPrincipleWTP-1',
+                            mainText: 'In principle, would you be willing to donate money to a charitable organization for environmental protection?',
+                            choices: [
+                                'Yes', 'No'
+                            ],
+                            shuffleChoices: false
+                        },
+                    ],
+                    formsOptions: {
+                        requiredChoice: true,
+                        shuffleChoices: true
+                    },
+                    className: 'centered'
+                },
+     }});
+    
+
+     stager.extendStep('theoreticalWTP', {
+        widget: {
+                name: 'ChoiceManager',
+                options: {
+                        id: 'theoreticalWTP',
+                        mainText: 'Suppose you now have the chance to donate money to an organization/project of your choice that works to protect the environment and to mitigate global warming, what would be the amount you would donate?',
+                forms:[
+                    {
+                        name: 'CustomInput',
+                        id: 'theoreticalWTP-1',
+                        mainText:'Please type in an amount equal or greater 1€',
+                        type: 'int',
+                        min: 1,
+                        // requiredChoice: false
+                    },
+                ],
+                    formsOptions: {
+                        requiredChoice: true,
+                        shuffleChoices: true
+                    },
+                    className: 'centered',
+                    },
+     }});
+
+
+     stager.extendStep('betterplace', {
+        backbutton: false,             
+    });
+
 
     stager.extendStep('end', {
         widget: {
             name: 'EndScreen',
             options: {
+                message: 'You have now completed successfully the survey and your data has ' +
+                'been saved. You can close this page now.',
                 feedback: true,
-                email: true
+                email: false,
+                exitCode: false,
+                totalWin: false
+            
+
             }
         },
         init: function () {

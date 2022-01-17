@@ -470,7 +470,7 @@ module.exports = {
          * If TRUE, plays default sound, if string plays the file sound
          * located at the specified uri.
          */
-        // dispatch: false
+        dispatch: false
     },
 
     /** ### ALLOW_PLAY_WITH_BOTS
@@ -479,7 +479,7 @@ module.exports = {
      *
      * A button is added to the interface.
      */
-    // ALLOW_PLAY_WITH_BOTS: true,
+    ALLOW_PLAY_WITH_BOTS: true,
 
     /** ### ALLOW_SELECT_TREATMENT
      *
@@ -489,6 +489,6 @@ module.exports = {
      *
      * A button is added to the interface.
      */
-    // ALLOW_SELECT_TREATMENT: true
+    ALLOW_SELECT_TREATMENT: true
 
 };

@@ -74,14 +74,13 @@ module.exports = {
 
     treatments: {
 
-        standard: {
-            description: "Standard Treatment"
-        }
+        TWTP: {
+            description: "Theoretical Willigness-to-pay"
+        },
 
-        //pressure: {
-            //description: "Short times to take decisions",
-            //guess: 5000
-        //}
+        AWTP: {
+            description: "Actual Willingness-to-pay",
+        }
 
     }
 };
