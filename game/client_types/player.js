@@ -156,7 +156,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     {
                         id: 'employment',
                         mainText: 'What is your employment status?',
-                        hint: '(If you have more than one of the employment statuses listed, please indicate the one for in which you spend the most time)',
+                        hint: '(If you have more than one of the employment statuses listed, please indicate the one in which you spend the most time)',
                         choices: [
                             'Unemployed', 'Student', 'Employed less than part time', 'Employed-part time', 'Employed', 'Self-employed',
                             'Retired'
@@ -168,7 +168,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                         id: 'income',
                         mainText: 'What number come closest to your ' +
                             'yearly income?',
-                        hint: '(in thousands of dollars)',
+                        hint: '(in thousands of euros)',
                         choices: [0, 5]
                             .concat(J.seq(10, 100, 10))
                             .concat(J.seq(120, 200, 20))
@@ -194,7 +194,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         widget: {
             name: 'ContentBox',
             options: {
-                mainText: 'On the next pages, we ask you several questions about environmental protection and global warming.',
+                mainText: 'On the next few pages, we ask you several questions about your willingness to pay for environmental/climate protection and your perception of environmental/climate protection.',
                 className: 'centered'
             }
         }
@@ -220,7 +220,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'trust-1',
-                        mainText: 'What do you believe: Are other people willing to pay something for environmental protection?',
+                        mainText: 'What do you believe: Are other people willing to pay something for environmental/climate protection?',
                         choices: [
                             '(1) Definitely not willing to pay', '(2)', '(3)', '(4)', '(5)', '(6)',
                             '(7) Definitely willing to pay'
@@ -248,7 +248,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'subjectiveNorm-1',
-                        mainText: 'Would your friends and relatives be in favor if you voluntarily contribute money to protect the environment or to mitigate global warming?',
+                        mainText: 'Would your friends and relatives be in favor if you voluntarily contribute money to protect the environment/climate?',
                         choices: [
                             '(1) Would not be in favor', '(2)', '(3)', '(4) Would not care',
                             '(5)', '(6)', '(7) Would be strongly in favor'
@@ -276,7 +276,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'perceivedBehavioralControl-1',
-                        mainText: 'Making a financial contribution to environmental protection or to mitigate global warming is or would be for me:',
+                        mainText: 'Making a financial contribution to environmental/climate protection is or would be for me:',
                         choices: [
                             '(1) Very difficult', '(2)', '(3)', '(4)', '(5)', '(6)',
                             '(7) Very easy'
@@ -285,7 +285,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     },
                     {
                         id: 'perceivedBehavioralControl-2',
-                        mainText: 'Making a financial contribution to environmental protection or to mitigate global warming is or would be for me:',
+                        mainText: 'Making a financial contribution to environmental/climate protection is or would be for me:',
                         choices: [
                             '(1) Not at all feasible', '(2)', '(3)', '(4)', '(5)', '(6)',
                             '(7) Feasible without any problems'
@@ -313,7 +313,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'awarenessOfNeedForPaying-1',
-                        mainText: 'Compared to other policy measures, protecting the environment and mitigating global warming are not a high priority.',
+                        mainText: 'Compared to other policy measures, protecting the environment/climate is not a high priority.',
                         choices: [
                             '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
                             '(5) Strongly agree'
@@ -322,7 +322,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     },
                     {
                         id: 'awarenessOfNeedForPaying-2',
-                        mainText: 'The current level of environmental protection and the implemented measures against global warming are completely sufficient. From my point of view, there is not need to increase them',
+                        mainText: 'The current level of environmental/climate protection are completely sufficient. From my point of view, there is not need to increase them',
                         choices: [
                             '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
                             '(5) Strongly agree'
@@ -350,7 +350,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'awarenessOfResponsibilityForPaying-1',
-                        mainText: 'I already pay enough for other things. I do not have to also pay for environmental protection and/or the mitigation of global warming',
+                        mainText: 'I already pay enough for other things. I do not have to also pay for environmental/climate protection',
                         choices: [
                             '(1) Strongly disagree', '(2) Disagree', ' (3) Neutral', '(4) Agree',
                             '(5) Strongly agree'
@@ -398,7 +398,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                 forms: [
                     {
                         id: 'subjectiveObligationToPay-1',
-                        mainText: 'To what extent do you perceive paying something for environmental protection or global warming mitigation as a moral obligation?',
+                        mainText: 'To what extent do you perceive paying something for environmental/climate protection as a moral obligation?',
                         choices: [
                             '(1) No moral obligation at all', '(2)', '(3)', '(4)', '(5)', '(6)',
                             '(7) A very strong moral obligation'
@@ -430,7 +430,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     forms: [
                         {
                             id: 'treatment-1',
-                            mainText: 'According to the graph, have most countries initiated effective measures to limit global warming to 1.5 degrees?',
+                            mainText: 'According to the map, have most countries initiated effective measures to limit global warming to 1.5 degrees?',
                             choices: [
                                 'Yes', 'No'
                             ],
@@ -439,12 +439,30 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                         },
                         {
                             id: 'treatment-2',
-                            mainText: 'According to the graph, the measures adopted by the EU so far are classified as what?',
+                            mainText: 'According to the map, the measures adopted by the EU so far are classified as what?',
                             choices: [
                                 '1.5°C Paris Agreement compatible', 'Almost sufficient', "Insufficient", 'Highly insufficient', 'Critically insufficient'
                             ],
                             shuffleChoices: true,
                             correctChoice: 2
+                        },
+                        {
+                            id: 'treatment-3',
+                            mainText: 'According to the text, to how many degrees celsius is global warming predicted with the measures currently adopted??',
+                            choices: [
+                                '2.7°C/3°C', '1.5°C/2°C', '1.5°C/2.7°C', '2.0°C/2.7°C',
+                            ],
+                            shuffleChoices: true,
+                            correctChoice: 0
+                        },
+                        {
+                            id: 'treatment-4',
+                            mainText: 'According to the image, how long do heatwaves last at 2°C?',
+                            choices: [
+                                '1.5 months', '1.1 months', '2 months', '1.3 months'
+                            ],
+                            shuffleChoices: true,
+                            correctChoice: 0
                         },
                     ],
                     formsOptions: {
@@ -459,16 +477,19 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
          
      stager.extendStep('inPrincipleWTP', {
         backbutton: false,
+        done: function(values) {
+            node.game.donateEnv = values['inPrincipleWTP-1'].value === 'Yes';
+        },
         widget: {
                 name: 'ChoiceManager',
                 options: {
                     id: 'inPrincipleWTP',
-                    mainText: 'As the previous figure has shown, most countries (including the worlds largest CO2 emitters) in the world have taken insufficient measures to mitigate and stop global warming at the present time. However, this cannot be achieved by the actions of countries alone, an important contribution can be made by charitable organizations (such as WWF, NABU, BUND, Green Forest Fund, etc.).',
+                    mainText: 'As the previous figure has shown, most countries (including the worlds largest greenhouse gas emitters) in the world have taken insufficient measures to mitigate and stop global warming at the present time. <br>Irrespective of the actions of the worlds countries, non-governmental environmental organizations are making an important contribution to accelerating the mitigation of global warming and protecting the environment (such as WWF, Green Forest Fund, NABU, etc.).',
                     simplify: true,
                     forms: [
                         {
                             id: 'inPrincipleWTP-1',
-                            mainText: 'In principle, would you be willing to donate money to a charitable organization for environmental protection?',
+                            mainText: 'In principle, would you be willing to donate money to a non-governmental environmental organization to protect the environment/climate?',
                             choices: [
                                 'Yes', 'No'
                             ],
@@ -485,11 +506,14 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
     
 
      stager.extendStep('theoreticalWTP', {
+         init: function() {
+             if (node.game.donateEnv === false) node.done();
+         },
         widget: {
                 name: 'ChoiceManager',
                 options: {
                         id: 'theoreticalWTP',
-                        mainText: 'Suppose you now have the chance to donate money to an organization/project of your choice that works to protect the environment and to mitigate global warming, what would be the amount you would donate?',
+                        mainText: 'Suppose you now have the chance to donate money to an organization/project of your choice that works to protect the environment/climate, what would be the amount you would donate?',
                 forms:[
                     {
                         name: 'CustomInput',
@@ -510,7 +534,10 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
 
 
      stager.extendStep('betterplace', {
-        backbutton: false,             
+        backbutton: false,
+        init: function(){
+            if(node.game.donateEnv === false) node.done();
+        },             
     });
 
 

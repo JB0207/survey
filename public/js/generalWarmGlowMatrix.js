@@ -25,9 +25,9 @@
     var scales = {
 
         gWG7: [
-            'I like to contribute money to projects that protect the environment or aim to mitigate global warming. I will rarely deny a request to contribute to such projects. ',
-            'I get a good feeling from donations to good causes such as environmental projects.',
-            'Spending money for a good cause is nothing special. I have an obligation to do something for others or the environment.'
+            'I like to contribute money to projects that protect the environment/climate. I will rarely deny a request to contribute to such projects. ',
+            'I get a good feeling from donations to good causes such as environmental/climate projects.',
+            'Spending money for a good cause is nothing special. I have an obligation to do something for others or the environment/climate.'
         ],
     };
 

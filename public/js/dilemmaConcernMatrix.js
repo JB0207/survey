@@ -25,10 +25,10 @@
     var scales = {
 
         dC7: [
-            'If I individually do something for environmental protection, it changes nothing at all in the aggregate.',
-            'If others do not take part, I also will not engage in environmental protection.',
-            'If I protect the environment, I am a "sucker" because I still suffer as a consequence of the environmentally damaging behavior of others.',
-            'Since others do enough for environmental protection, I do not have to contribute.'
+            'If I individually do something for environmental/climate protection, it changes nothing at all in the aggregate.',
+            'If others do not take part, I also will not engage in environmental/climate protection.',
+            'If I protect the environment/climate, I am a "sucker" because I still suffer as a consequence of the environmentally/climate damaging behavior of others.',
+            'Since others do enough for environmental/climate protection, I do not have to contribute.'
         ],
     };
 
