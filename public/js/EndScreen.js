@@ -25,8 +25,8 @@
 
     EndScreen.texts = {
         headerMessage: 'Thank you for participating!',
-        message: 'You have now completed successfully the survey and your data has ' +
-                 'been saved. You can close this page now.',
+        message: 'You have now completed successfully the survey and your' + 
+                    'data has been saved. You can close this page now.',
         totalWin: 'Your total win:',
         exitCode: 'Your exit code:',
         errTotalWin: 'Error: invalid total win.',
