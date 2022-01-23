@@ -206,8 +206,9 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         widget: {
             name: 'dC',
             title: false,
-            panel: false
-        }   
+            panel: false,
+            requiredChoice: true,
+        },  
     });
 
     stager.extendStep('trust', {
@@ -373,7 +374,8 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         widget: {
             name: 'eC',
             title: false,
-            panel: false
+            panel: false,
+            requiredChoice: true,
         }   
     });
 
@@ -383,7 +385,8 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         widget: {
             name: 'gWG',
             title: false,
-            panel: false
+            panel: false,
+            requiredChoice: true,
         }   
     });
 
