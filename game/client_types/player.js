@@ -19,6 +19,7 @@ const J = ngc.JSUS;
 
 module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
 
+
     // Define a function for future use.
     function capitalizeInput(input) {
         var str;
@@ -78,7 +79,6 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         // this.debugInfo = node.widgets.append('DebugInfo', header)
     });
 
-
     stager.extendStep('consent', {
         donebutton: false,
         widget: 'Consent',
@@ -106,6 +106,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
             W.setInnerHTML('time', s.CONSENT.EXP_TIME);
         }
     });
+
 
 
     stager.extendStep('questionInformation-1', {
@@ -211,17 +212,18 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         },  
     });
 
+
     stager.extendStep('trust', {
         widget: {
             name: 'ChoiceManager',
             options: {
                 id: 'trust',
-                mainText: 'How strongly do you agree or disagree with the following statement?',
+                mainText: 'What do you believe?',
                 simplify: true,
                 forms: [
                     {
                         id: 'trust-1',
-                        mainText: 'What do you believe: Are other people willing to pay something for environmental/climate protection?',
+                        mainText: 'Are other people willing to pay something for environmental/climate protection?',
                         choices: [
                             '(1) Definitely not willing to pay', '(2)', '(3)', '(4)', '(5)', '(6)',
                             '(7) Definitely willing to pay'
@@ -534,13 +536,28 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                     className: 'centered',
                     },
      }});
-
+     
 
      stager.extendStep('betterplace', {
         backbutton: false,
         init: function(){
             if(node.game.donateEnv === false) node.done();
-        },             
+        }, 
+        cb: function () {
+            // construct variable encompassing the ID of the respective respondent
+            var id;
+            id = node.player.id;
+
+            // add to links in betterplace.html the id of the respective respondent
+            W.getElementById('link1').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/59625?donation_amount=1?client_reference="+ id; 
+            W.getElementById('link2').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/86385?donation_amount=1?client_reference="+ id; 
+            W.getElementById('link3').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/75791?donation_amount=1?client_reference="+ id; 
+        },
+        done: function(values){
+            var values = {};
+            values.donated = W.getFrameWindow().location.href;
+            return values;
+        },
     });
 
 

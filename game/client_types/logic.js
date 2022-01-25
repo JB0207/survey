@@ -77,6 +77,10 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
             // Select all 'done' items and save everything as json.
             memory.select('done').save('memory_all.json');
 
+            memory.select('done').save('memory_all.csv', {
+                header: 'all',
+                flatten: true
+          });
           }
 
         });
