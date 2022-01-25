@@ -549,9 +549,9 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
             id = node.player.id;
 
             // add to links in betterplace.html the id of the respective respondent
-            W.getElementById('link1').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/59625?donation_amount=1?client_reference="+ id; 
-            W.getElementById('link2').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/86385?donation_amount=1?client_reference="+ id; 
-            W.getElementById('link3').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/75791?donation_amount=1?client_reference="+ id; 
+            W.getElementById('link1').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/59625?client_reference=" + id + "&donation_amount=1"; 
+            W.getElementById('link2').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/86385?client_reference=" + id + "&donation_amount=1"; 
+            W.getElementById('link3').href = "https://www.betterplace.org/de/donate/uni-mannheim/projects/75791?client_reference=" + id + "&donation_amount=1"; 
         },
         done: function(values){
             var values = {};
