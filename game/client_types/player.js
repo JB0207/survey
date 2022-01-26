@@ -555,7 +555,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
         },
         done: function(values){
             var values = {};
-            values.donated = W.getFrameWindow().location.href;
+            values.donated = document.location.href;
             return values;
         },
     });
