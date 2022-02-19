@@ -106,7 +106,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
             W.setInnerHTML('time', s.CONSENT.EXP_TIME);
         }
     });
-
+ 
 
 
     stager.extendStep('questionInformation-1', {
@@ -246,7 +246,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
             name: 'ChoiceManager',
             options: {
                 id: 'subjectiveNorm',
-                mainText: 'What do you think:',
+                mainText: 'What do you think?',
                 simplify: true,
                 forms: [
                     {
@@ -442,15 +442,15 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                             shuffleChoices: false,
                             correctChoice: 1
                         },
-                        {
-                            id: 'treatment-2',
-                            mainText: 'According to the map, the measures adopted by the EU so far are classified as what?',
-                            choices: [
-                                '1.5°C Paris Agreement compatible', 'Almost sufficient', "Insufficient", 'Highly insufficient', 'Critically insufficient'
-                            ],
-                            shuffleChoices: true,
-                            correctChoice: 2
-                        },
+                        //{
+                        //    id: 'treatment-2',
+                        //    mainText: 'According to the map, the measures adopted by the EU so far are classified as what?',
+                        //    choices: [
+                        //        '1.5°C Paris Agreement compatible', 'Almost sufficient', "Insufficient", 'Highly insufficient', 'Critically insufficient'
+                        //    ],
+                        //    shuffleChoices: true,
+                        //    correctChoice: 2
+                        //},
                         {
                             id: 'treatment-3',
                             mainText: 'According to the text, to how many degrees celsius is global warming predicted with the measures currently adopted??',
@@ -462,12 +462,12 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
                         },
                         {
                             id: 'treatment-4',
-                            mainText: 'According to the image, how long do heatwaves last at 2°C?',
+                            mainText: 'According to the table, how many people in coastal areas will be affected by flooding per year by 2055 with a global warming of ≥ 2.5°C?',
                             choices: [
-                                '1.5 months', '1.1 months', '2 months', '1.3 months'
+                                '36 million', '41 million', '48 million',
                             ],
                             shuffleChoices: true,
-                            correctChoice: 0
+                            correctChoice: 2
                         },
                     ],
                     formsOptions: {
@@ -511,6 +511,7 @@ module.exports = function (treatmentName, settings, stager, setup, gameRoom) {
     
 
      stager.extendStep('theoreticalWTP', {
+        backbutton: false,
          init: function() {
              if (node.game.donateEnv === false) node.done();
          },
