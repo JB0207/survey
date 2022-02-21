@@ -45,18 +45,18 @@ module.exports = function(treatmentName, settings, stager, setup, gameRoom) {
 
 
     // Skip multiple stages:
- // stager.skip(['instructions',
- //'questionInformation-1',
- //'demographics',
- //'questionInformation-2',
- //'dilemmaConcernMatrix',
- //'trust',
- //'subjectiveNorm',
- //'perceivedBehavioralControl',
- //'awarenessOfNeedForPaying',
- //'awarenessOfResponsibilityForPaying',
- //'environmentalConcernMatrix',
- //'generalWarmGlowMatrix'])
+    //stager.skip(['instructions',
+   //'questionInformation-1',
+   //'demographics',
+   //'questionInformation-2',
+   //'dilemmaConcernMatrix',
+   //'trust',
+   //'subjectiveNorm',
+   //'perceivedBehavioralControl',
+   //'awarenessOfNeedForPaying',
+   //'awarenessOfResponsibilityForPaying',
+   //'environmentalConcernMatrix',
+   //'generalWarmGlowMatrix'])
 
     // Skip a step within a stage:
     // stager.skip('stageName', 'stepName');
